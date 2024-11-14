@@ -1,15 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const userRoutes = require('./routes/userRoutes');
 const cors = require('cors');
 
 const app = express();
 
 // Middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
 app.use(cors());
 app.use(session({
   secret: 'secretKey',
@@ -18,7 +15,7 @@ app.use(session({
 }));
 
 // Rutas
-app.use('/users', userRoutes);
+app.use('/', require ('./userRoutes'));
 
 // Iniciar el servidor
 const PORT = 3006;
